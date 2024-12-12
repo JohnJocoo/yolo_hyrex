@@ -3,3 +3,58 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+body {
+  @apply antialiased relative bg-slate-200 font-sans;
+}
+
+main {
+  @apply max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8;
+}
+
+h1 {
+  @apply text-center text-slate-900 font-extrabold text-3xl;
+}
+
+.matches {
+  @apply mt-8 max-w-xl mx-auto text-center;
+}
+
+.matches li {
+  @apply border-t border-slate-300 px-6 py-4 grid items-center;
+  grid-template-columns: 15% 55% 30%;
+}
+
+.matches li.header {
+  @apply font-semibold text-left;
+}
+
+
+.matches li .name {
+  @apply w-80 font-semibold text-left;
+}
+
+.matches li .logos {
+  @apply flex items-center;
+}
+
+.matches li .logos img {
+  @apply h-6;
+  width: auto;
+}
+
+.matches li .status {
+  @apply w-32 px-3 py-1 rounded-full font-medium;
+}
+
+.matches li .status.active {
+  @apply bg-green-300;
+}
+
+.matches li .status.completed {
+  @apply bg-blue-300;
+}
+
+.matches li .status.paused {
+  @apply bg-yellow-300;
+}

@@ -1,9 +1,7 @@
 defmodule YoloWeb.PageController do
   use YoloWeb, :controller
 
-  def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home, layout: false)
+  def redirect_matches(conn, _params) do
+    redirect(conn, to: ~p"/matches")
   end
 end

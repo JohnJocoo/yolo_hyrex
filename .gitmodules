@@ -1,3 +1,6 @@
 [submodule "task-sports-feed"]
 	path = task-sports-feed
 	url = https://github.com/coingaming/task-sports-feed.git
+[submodule "priv/static/images/football-logos"]
+	path = priv/static/images/football-logos
+	url = https://github.com/luukhopman/football-logos.git

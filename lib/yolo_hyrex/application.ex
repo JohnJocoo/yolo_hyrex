@@ -5,18 +5,18 @@ defmodule Yolo.Application do
 
   use Application
 
+  alias Yolo.MatchesPipe
+  alias Yolo.MatchesStorage
+
   @impl true
   def start(_type, _args) do
     children = [
       YoloWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:yolo_hyrex, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Yolo.PubSub},
-      # Start the Finch HTTP client for sending emails
-      {Finch, name: Yolo.Finch},
-      # Start a worker by calling: Yolo.Worker.start_link(arg)
-      # {Yolo.Worker, arg},
-      # Start to serve requests, typically the last entry
-      YoloWeb.Endpoint
+      MatchesStorage,
+      YoloWeb.Endpoint,
+      MatchesPipe
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

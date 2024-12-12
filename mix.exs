@@ -19,7 +19,7 @@ defmodule Yolo.MixProject do
   def application do
     [
       mod: {Yolo.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :wx, :observer]
     ]
   end
 
@@ -54,7 +54,9 @@ defmodule Yolo.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:broadway, "~> 1.1.0"},
+      {:to_atom_in, "~> 0.1.0"}
     ]
   end
 
