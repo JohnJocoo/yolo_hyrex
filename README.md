@@ -26,7 +26,7 @@ mix test
 
 Made with:
   * `Broadway` for reading events (updates) from file and processing them
-  * `ETS` for in-memory storing (ex. usefull when user just opens page and want to show current statuses for all matches)
+  * `ETS` for in-memory storing (ex. usefull when user just opens page and you want to show current statuses for all matches)
   * `LiveView` for displaying all matches with (soft) real-time updates 
-  * `Phoenix.PubSub` for keeping `LiveView` up to date with matches statuses
+  * `Phoenix.PubSub` for keeping `LiveView` up to date with new matches statuses
   * `ExUnit` with `LiveView` and `Broadway` testing utilities and `GitHub` actions to run tests on push
