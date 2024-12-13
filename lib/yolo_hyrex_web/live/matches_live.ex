@@ -16,10 +16,29 @@ defmodule YoloWeb.MatchesLive do
     socket = assign(socket,
       matches: MatchesStorage.all()
               |> Map.new(fn %{id: id} = data -> {id, Map.put(data, :ts, now)} end),
-      sort_by: {:name, :asc}
+      sort_by: {:name, :asc},
+      page_title: "⚽ Matches"
     )
 
     {:ok, socket}
+  end
+
+  @impl true
+  def handle_params(%{"sort_by" => "latest"}, _uri, socket) do
+    socket = assign(socket, sort_by: {:latest, nil})
+    {:noreply, socket}
+  end
+
+  def handle_params(%{"sort_by" => sort_by_raw, "sort_order" => sort_order_raw}, _uri, socket) do
+    sort_by = to_atom_in(sort_by_raw, [:name, :status])
+    sort_order = to_atom_in(sort_order_raw, [:asc, :desc])
+    socket = assign(socket, sort_by: {sort_by, sort_order})
+    {:noreply, socket}
+  end
+
+  def handle_params(%{}, _uri, socket) do
+    socket = assign(socket, sort_by: {:name, :asc})
+    {:noreply, socket}
   end
 
   @impl true
@@ -81,24 +100,6 @@ defmodule YoloWeb.MatchesLive do
       </ul>
     </div>
     """
-  end
-
-  @impl true
-  def handle_params(%{"sort_by" => "latest"}, _uri, socket) do
-    socket = assign(socket, sort_by: {:latest, nil})
-    {:noreply, socket}
-  end
-
-  def handle_params(%{"sort_by" => sort_by_raw, "sort_order" => sort_order_raw}, _uri, socket) do
-    sort_by = to_atom_in(sort_by_raw, [:name, :status])
-    sort_order = to_atom_in(sort_order_raw, [:asc, :desc])
-    socket = assign(socket, sort_by: {sort_by, sort_order})
-    {:noreply, socket}
-  end
-
-  def handle_params(%{}, _uri, socket) do
-    socket = assign(socket, sort_by: {:name, :asc})
-    {:noreply, socket}
   end
 
   @impl true
@@ -241,4 +242,6 @@ defmodule YoloWeb.MatchesLive do
       "/images/football-logos/logos/Germany - Bundesliga/Borussia Dortmund.png"
     }
   end
+
+  defp get_logos_path(_), do: {nil, nil}
 end

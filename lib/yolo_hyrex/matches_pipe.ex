@@ -2,14 +2,13 @@ defmodule Yolo.MatchesPipe do
   use Broadway
 
   alias Broadway.Message
-  alias Yolo.MatchesFileProducer
   alias Yolo.MatchesStorage
 
   def start_link(_opts) do
     Broadway.start_link(__MODULE__,
       name: MatchesPipe,
       producer: [
-        module: {MatchesFileProducer, ["task-sports-feed/updates.json"]},
+        module: Application.fetch_env!(:yolo_hyrex, :matches_updates_producer_module),
         concurrency: 1
       ],
       processors: [

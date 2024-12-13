@@ -18,3 +18,6 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+config :yolo_hyrex,
+  matches_updates_producer_module: {Yolo.MatchesFileProducer, ["task-sports-feed/updates.json"]}
