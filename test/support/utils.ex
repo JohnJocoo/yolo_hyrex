@@ -6,7 +6,7 @@ defmodule YoloWeb.Utils do
   def update_match(id, name, status) do
     MatchesStorage.subscribe()
     MatchesStorage.update(id, name, status)
-    assert_receive({:match_update, %{id: ^id, name: ^name, status: ^status}})
+    assert_receive {:match_update, %{id: ^id, name: ^name, status: ^status}}
     MatchesStorage.unsubscribe()
   end
 

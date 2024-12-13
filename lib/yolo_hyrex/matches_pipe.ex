@@ -6,7 +6,7 @@ defmodule Yolo.MatchesPipe do
 
   def start_link(_opts) do
     Broadway.start_link(__MODULE__,
-      name: MatchesPipe,
+      name: __MODULE__,
       producer: [
         module: Application.fetch_env!(:yolo_hyrex, :matches_updates_producer_module),
         concurrency: 1
