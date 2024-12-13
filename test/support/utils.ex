@@ -21,5 +21,4 @@ defmodule YoloWeb.Utils do
         wait_until(max(0, timeout - 10), fun)
     end
   end
-
 end

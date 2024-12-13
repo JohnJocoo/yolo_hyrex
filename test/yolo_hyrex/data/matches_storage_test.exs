@@ -23,59 +23,65 @@ defmodule Yolo.MatchesStorageTest do
 
     wait_until(1000, fn ->
       assert %{
-        id: 3,
-        name: "Braga vs Famalição",
-        status: "active"
-      } == MatchesStorage.get(3)
+               id: 3,
+               name: "Braga vs Famalição",
+               status: "active"
+             } == MatchesStorage.get(3)
     end)
 
-    assert [%{
-      id: 3,
-      name: "Braga vs Famalição",
-      status: "active"
-    }] == MatchesStorage.all()
+    assert [
+             %{
+               id: 3,
+               name: "Braga vs Famalição",
+               status: "active"
+             }
+           ] == MatchesStorage.all()
   end
 
   test "update match" do
     update_match(3, "Braga vs Famalição", "paused")
 
     assert %{
-      id: 3,
-      name: "Braga vs Famalição",
-      status: "paused"
-    } == MatchesStorage.get(3)
+             id: 3,
+             name: "Braga vs Famalição",
+             status: "paused"
+           } == MatchesStorage.get(3)
 
-    assert [%{
-      id: 3,
-      name: "Braga vs Famalição",
-      status: "paused"
-    }] == MatchesStorage.all()
+    assert [
+             %{
+               id: 3,
+               name: "Braga vs Famalição",
+               status: "paused"
+             }
+           ] == MatchesStorage.all()
 
     MatchesStorage.update(3, "Braga vs Famalição", "active")
 
     wait_until(1000, fn ->
       assert %{
-        id: 3,
-        name: "Braga vs Famalição",
-        status: "active"
-      } == MatchesStorage.get(3)
+               id: 3,
+               name: "Braga vs Famalição",
+               status: "active"
+             } == MatchesStorage.get(3)
     end)
 
-    assert [%{
-      id: 3,
-      name: "Braga vs Famalição",
-      status: "active"
-    }] == MatchesStorage.all()
+    assert [
+             %{
+               id: 3,
+               name: "Braga vs Famalição",
+               status: "active"
+             }
+           ] == MatchesStorage.all()
   end
 
   test "receive update notification" do
     update_match(5, "Braga vs Famalição", "paused")
 
     assert %{
-      id: 5,
-      name: "Braga vs Famalição",
-      status: "paused"
-    } == MatchesStorage.get(5)
+             id: 5,
+             name: "Braga vs Famalição",
+             status: "paused"
+           } == MatchesStorage.get(5)
 
     MatchesStorage.subscribe()
     MatchesStorage.update(5, "Braga vs Famalição", "active")

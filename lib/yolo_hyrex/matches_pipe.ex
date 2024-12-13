@@ -20,14 +20,17 @@ defmodule Yolo.MatchesPipe do
 
   @impl true
   def handle_message(
-    _,
-    %Message{data: %{
-      "match_id" => id,
-      "crash" => crash,
-      "name" => name,
-      "status" => status}} = message,
-    _context) do
-
+        _,
+        %Message{
+          data: %{
+            "match_id" => id,
+            "crash" => crash,
+            "name" => name,
+            "status" => status
+          }
+        } = message,
+        _context
+      ) do
     if crash do
       raise RuntimeError, "Oops! #{id}"
     end

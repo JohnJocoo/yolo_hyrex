@@ -23,9 +23,10 @@ defmodule Yolo.MatchesFileProducer do
       spawn_link(fn -> emit_delayed_updates(pid, match_id, match_updates) end)
     end)
 
-    {:producer, %__MODULE__{
-      matches: Map.keys(updates) |> MapSet.new()
-    }}
+    {:producer,
+     %__MODULE__{
+       matches: Map.keys(updates) |> MapSet.new()
+     }}
   end
 
   @impl true

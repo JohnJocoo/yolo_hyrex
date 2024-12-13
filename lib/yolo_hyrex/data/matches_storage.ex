@@ -4,10 +4,10 @@ defmodule Yolo.MatchesStorage do
   alias Phoenix.PubSub
 
   @type match :: %{
-    id: integer(),
-    name: String.t(),
-    status: String.t()
-  }
+          id: integer(),
+          name: String.t(),
+          status: String.t()
+        }
 
   @table_name :matches_table
 
